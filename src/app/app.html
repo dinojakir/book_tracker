@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<div class="flex w-full h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-80 shrink-0 border-r border-[oklch(var(--border))] bg-card/40 overflow-y-auto">
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 overflow-y-auto">
+        <div class="h-full flex flex-col items-center justify-center text-center px-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                class="w-12 h-12 text-primary mb-6" aria-hidden="true">
+
+                <path d="M10 2v8l3-3 3 3V2"></path>
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path>
+            </svg>
+            <h2 class="font-display text-4xl mb-3">
+                Your reading, organized.
+            </h2>
+            <p class="text-muted-foreground max-w-md">
+                Pick a book from the sidebar, or build your library: areas → subareas → books → chapters and sections.
+            </p>
+        </div>
+    </main>
+</div>

@@ -1,51 +1,57 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
-    --radius: 0.5rem;
-    --background: oklch(0.16 0.012 80);
-    --foreground: oklch(0.94 0.012 80);
-    --card: oklch(0.21 0.014 80);
-    --card-foreground: oklch(0.94 0.012 80);
-    --success: oklch(0.7 0.15 150);
+  /* layout */
+  --radius: 0.5rem;
 
-    --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
-    --color-ring-offset-background: var(--background);
-    --color-success: var(--success);
+  /* core colors */
+  --background: 0.16 0.012 80;
+  --foreground: 0.94 0.012 80;
+
+  --card: 0.21 0.014 80;
+  --card-foreground: 0.94 0.012 80;
+
+  --success: 0.7 0.15 150;
+
+  /* missing semantic tokens (IMPORTANT) */
+  --border: 0.30 0.012 80;
+  --input: 0.28 0.012 80;
+  --ring: 0.55 0.18 250;
+
+  --muted: 0.22 0.012 80;
+  --muted-foreground: 0.65 0.01 80;
+
+  --primary: 0.65 0.18 250;
+  --primary-foreground: 0.98 0.01 250;
+
+  --secondary: 0.30 0.012 80;
+  --secondary-foreground: 0.90 0.01 80;
+
+  --accent: 0.35 0.02 80;
+  --accent-foreground: 0.92 0.01 80;
+
+  --destructive: 0.55 0.22 25;
+  --destructive-foreground: 0.98 0.01 25;
+
+  /* fonts */
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Inter", "Segoe UI Symbol", "Noto Sans Symbols", ui-sans-serif, system-ui, sans-serif;
+
+  /* radius scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* BASE STYLES */
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
+
 
   html,
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: oklch(var(--background));
+    color: oklch(var(--foreground));
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
   }
