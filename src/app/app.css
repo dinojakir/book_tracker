@@ -1,12 +1,16 @@
- .text-muted-foreground {
-     color: oklch(var(--muted-foreground));
-     font-family: var(--font-sans);
- }
+.text-muted-foreground {
+  color: oklch(var(--muted-foreground));
+  font-family: var(--font-sans);
+}
 
- .text-primary {
-     color: oklch(var(--primary));
- }
+.text-primary {
+  color: oklch(78% 0.14 65);
+}
 
- .font-display {
-     font-family: Instrument Serif, ui-serif, Georgia, serif;
- }
+.font-display {
+  font-family:
+    Instrument Serif,
+    ui-serif,
+    Georgia,
+    serif;
+}

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   /* layout */
@@ -14,7 +14,7 @@
   --success: 0.7 0.15 150;
 
   /* missing semantic tokens (IMPORTANT) */
-  --border: 0.30 0.012 80;
+  --border: 0.3 0.012 80;
   --input: 0.28 0.012 80;
   --ring: 0.55 0.18 250;
 
@@ -24,8 +24,8 @@
   --primary: 0.65 0.18 250;
   --primary-foreground: 0.98 0.01 250;
 
-  --secondary: 0.30 0.012 80;
-  --secondary-foreground: 0.90 0.01 80;
+  --secondary: 0.3 0.012 80;
+  --secondary-foreground: 0.9 0.01 80;
 
   --accent: 0.35 0.02 80;
   --accent-foreground: 0.92 0.01 80;
@@ -34,8 +34,8 @@
   --destructive-foreground: 0.98 0.01 25;
 
   /* fonts */
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Inter", "Segoe UI Symbol", "Noto Sans Symbols", ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* radius scale */
   --radius-sm: calc(var(--radius) - 4px);
@@ -46,14 +46,12 @@
 
 /* BASE STYLES */
 @layer base {
-
-
   html,
   body {
     background-color: oklch(var(--background));
     color: oklch(var(--foreground));
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: 'ss01', 'cv11';
   }
 
   h1,
