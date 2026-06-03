@@ -6,11 +6,3 @@
 .text-primary {
   color: oklch(78% 0.14 65);
 }
-
-.font-display {
-  font-family:
-    Instrument Serif,
-    ui-serif,
-    Georgia,
-    serif;
-}
