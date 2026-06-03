@@ -3,5 +3,5 @@
 }
 
 .border-input {
-    border-color: oklch(var(--input));
+  border-color: oklch(var(--input));
 }
