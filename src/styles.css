@@ -16,7 +16,6 @@
   /* missing semantic tokens (IMPORTANT) */
   --border: 0.3 0.012 80;
   --input: 0.28 0.012 80;
-  --ring: 0.55 0.18 250;
 
   --muted: 0.22 0.012 80;
   --muted-foreground: 0.65 0.01 80;
@@ -44,6 +43,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@theme {
+  --color-ring: oklch(0.78 0.14 65);
+}
+
 /* BASE STYLES */
 @layer base {
   html,
@@ -58,7 +61,11 @@
   h2,
   h3,
   .font-display {
-    font-family:
-      var(--font-display);
+    font-family: var(--font-display);
+  }
+
+  .text-muted-foreground {
+    color: oklch(var(--muted-foreground));
+    font-family: var(--font-sans);
   }
 }

@@ -1,3 +1,7 @@
 .text-primary {
   color: oklch(78% 0.14 65);
 }
+
+.border-input {
+    border-color: oklch(var(--input));
+}
