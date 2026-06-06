@@ -79,20 +79,23 @@ export class Sidebar implements OnInit {
     }
   }
 
-  addSubarea(node: AreaNode) {
-    this.activeSubareaAreaId = node.id;
+  async addSubarea(area: AreaNode) {
+    const name = this.newSubarea().trim();
 
-    this.areaNodes.set(
-      this.areaNodes().map((n) =>
-        n.id === node.id
-          ? {
-              ...n,
-              expanded: true,
-              addSubarea: true,
-            }
-          : n,
-      ),
-    );
+    if (!name) return;
+
+    const payload: AreaInsert = {
+      name,
+      parent_id: area.id,
+    };
+
+    try {
+      this.newSubarea.set('');
+      await this.areaService.create(payload);
+      await this.getAreas();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async deleteArea(area: AreaNode) {
@@ -122,6 +125,22 @@ export class Sidebar implements OnInit {
     }
   }
 
+  showAddSubarea(node: AreaNode) {
+    this.activeSubareaAreaId = node.id;
+
+    this.areaNodes.set(
+      this.areaNodes().map((n) =>
+        n.id === node.id
+          ? {
+              ...n,
+              expanded: true,
+              addSubarea: true,
+            }
+          : n,
+      ),
+    );
+  }
+
   toggleNodeExpanded(node: AreaNode) {
     this.areaNodes.set(
       this.areaNodes().map((n) => (n.id === node.id ? { ...n, expanded: !n.expanded } : n)),
@@ -132,6 +151,12 @@ export class Sidebar implements OnInit {
     const value = (event.target as HTMLInputElement).value;
 
     this.newArea.set(value);
+  }
+
+  updateNewSubarea(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+
+    this.newSubarea.set(value);
   }
 
   private closeSubarea() {
