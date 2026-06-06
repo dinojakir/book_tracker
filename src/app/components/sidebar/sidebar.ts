@@ -1,12 +1,22 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Area, AreaInsert, AreasService } from '../../db/areas.service';
+import {
+  CdkDropList,
+  CdkDrag,
+  CdkDragHandle,
+  CdkDragDrop,
+  moveItemInArray
+} from '@angular/cdk/drag-drop';
 
 type AreaNode = Area & { expanded: boolean };
 
 @Component({
   selector: 'app-sidebar',
-  imports: [FormsModule],
+  imports: [FormsModule,
+    CdkDropList,
+    CdkDrag,
+    CdkDragHandle],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
   standalone: true,
@@ -48,6 +58,14 @@ export class Sidebar implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    const items = [...this.areaNodes()];
+
+    moveItemInArray(items, event.previousIndex, event.currentIndex);
+
+    this.areaNodes.set(items); // important for signals
   }
 
   async getAreas() {
