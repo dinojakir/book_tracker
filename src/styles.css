@@ -32,6 +32,8 @@
   --destructive: 0.55 0.22 25;
   --destructive-foreground: 0.98 0.01 25;
 
+  --orange: 78% 0.14 65;
+
   /* fonts */
   --font-display: Georgia, serif;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -62,6 +64,14 @@
   h3,
   .font-display {
     font-family: var(--font-display);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .font-inter {
+    font-family: 'Inter';
   }
 
   .text-muted-foreground {

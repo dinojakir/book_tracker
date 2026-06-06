@@ -2,6 +2,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Area, AreaInsert, AreasService } from '../../db/areas.service';
 
+type AreaNode = Area & { expanded: boolean };
+
 @Component({
   selector: 'app-sidebar',
   imports: [FormsModule],
@@ -13,6 +15,7 @@ export class Sidebar implements OnInit {
   private readonly areaService = inject(AreasService);
 
   allAreas = signal<Area[]>([]);
+  areaNodes = signal<AreaNode[]>([]);
   newArea = signal('');
 
   ngOnInit(): void {
@@ -30,8 +33,18 @@ export class Sidebar implements OnInit {
     };
 
     try {
-      await this.areaService.create(payload);
       this.newArea.set('');
+      await this.areaService.create(payload);
+      await this.getAreas();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteArea(area: AreaNode) {
+    try {
+      await this.areaService.delete(area.id);
+      await this.getAreas();
     } catch (error) {
       console.error(error);
     }
@@ -40,12 +53,17 @@ export class Sidebar implements OnInit {
   async getAreas() {
     try {
       const areas = await this.areaService.getAll();
-      this.allAreas.set(areas);
 
-      console.log(areas);
+      this.allAreas.set(areas);
+      this.areaNodes.set(areas.map((i) => ({ ...i, expanded: false })));
     } catch (error) {
       console.error(error);
     }
+  }
+
+  toggleNodeExpanded(node: AreaNode) {
+    node.expanded = !node.expanded;
+    this.areaNodes.set([...this.areaNodes()]);
   }
 
   updateNewArea(event: Event) {
