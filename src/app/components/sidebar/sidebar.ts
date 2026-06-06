@@ -6,17 +6,14 @@ import {
   CdkDrag,
   CdkDragHandle,
   CdkDragDrop,
-  moveItemInArray
+  moveItemInArray,
 } from '@angular/cdk/drag-drop';
 
-type AreaNode = Area & { expanded: boolean };
+type AreaNode = Area & { expanded: boolean; addSubarea: boolean };
 
 @Component({
   selector: 'app-sidebar',
-  imports: [FormsModule,
-    CdkDropList,
-    CdkDrag,
-    CdkDragHandle],
+  imports: [FormsModule, CdkDropList, CdkDrag, CdkDragHandle],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
   standalone: true,
@@ -27,6 +24,7 @@ export class Sidebar implements OnInit {
   allAreas = signal<Area[]>([]);
   areaNodes = signal<AreaNode[]>([]);
   newArea = signal('');
+  newSubarea = signal('');
 
   ngOnInit(): void {
     this.getAreas();
@@ -51,6 +49,11 @@ export class Sidebar implements OnInit {
     }
   }
 
+  addSubarea(node: AreaNode) {
+    node.addSubarea = true;
+    this.areaNodes.set([...this.areaNodes()]);
+  }
+
   async deleteArea(area: AreaNode) {
     try {
       await this.areaService.delete(area.id);
@@ -73,7 +76,7 @@ export class Sidebar implements OnInit {
       const areas = await this.areaService.getAll();
 
       this.allAreas.set(areas);
-      this.areaNodes.set(areas.map((i) => ({ ...i, expanded: false })));
+      this.areaNodes.set(areas.map((i) => ({ ...i, expanded: false, addSubarea: false })));
     } catch (error) {
       console.error(error);
     }
