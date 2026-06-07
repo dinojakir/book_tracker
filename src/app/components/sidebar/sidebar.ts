@@ -18,7 +18,7 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 
-type AreaNode = Area & { expanded: boolean; addSubarea: boolean };
+type AreaNode = Area & { expanded: boolean; addSubarea: boolean; subareas: AreaNode[] };
 
 @Component({
   selector: 'app-sidebar',
@@ -119,7 +119,23 @@ export class Sidebar implements OnInit {
     try {
       const areas = await this.areaService.getAll();
 
-      this.areaNodes.set(areas.map((i) => ({ ...i, expanded: false, addSubarea: false })));
+      const rootAreas = areas
+        .filter((area) => !area.parent_id)
+        .map((area) => ({
+          ...area,
+          expanded: false,
+          addSubarea: false,
+          subareas: areas
+            .filter((child) => child.parent_id === area.id)
+            .map((child) => ({
+              ...child,
+              expanded: false,
+              addSubarea: false,
+              subareas: [],
+            })),
+        }));
+
+      this.areaNodes.set(rootAreas);
     } catch (error) {
       console.error(error);
     }
